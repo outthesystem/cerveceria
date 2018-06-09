@@ -1,0 +1,6 @@
+{
+    "name": "Product",
+    "slug": "product",
+    "version": "1.0",
+    "description": "Gestion de productos de barberia cerveceria con sus respectivas categorias"
+}
