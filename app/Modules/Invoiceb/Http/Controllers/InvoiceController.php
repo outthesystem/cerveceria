@@ -101,7 +101,7 @@ class InvoiceController extends Controller
           'stock_old' => $product->stock,
           'stock_modify' => $invoiceitem->quantity,
           'stock_new' => $product->stock - $invoiceitem->quantity,
-          'sum' => 1,
+          'sum' => NULL,
           'reason' => 'Descontado por venta. en esta <a href="'.url('invoiceb/edit/'.$invoice->id).'">Factura</a>'
         ]);
         $product->stock = $product->stock - $invoiceitem->quantity;
@@ -137,7 +137,7 @@ class InvoiceController extends Controller
             'stock_old' => $product->stock,
             'stock_modify' => $invoiceitem->quantity,
             'stock_new' => $product->stock + $invoiceitem->quantity,
-            'sum' => NULL,
+            'sum' => 1,
             'reason' => ''.$request->reason.' <a href="'.url('invoiceb/edit/'.$invoice->id).'">Factura</a>'
           ]);
           if ($request->return_stock == 1) {
