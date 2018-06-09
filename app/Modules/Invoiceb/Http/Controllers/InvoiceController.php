@@ -61,6 +61,7 @@ class InvoiceController extends Controller
         'date_reservation' => $request->date_reservation,
         'hour_reservation' => $request->hour_reservation,
         'reserved' => $request->reserved,
+        'observaciones' => $request->observaciones,
       ]);
 
       Session::flash('success', 'La factura/reserva se creo correctamente.');

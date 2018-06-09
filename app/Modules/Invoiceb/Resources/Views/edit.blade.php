@@ -216,6 +216,14 @@
                                 </a>
                               </div>
                           @endif
+                          <div class="col-sm-12">
+                            <div class="form-group row">
+                                <label class="col-12" for="name">Observaciones</label>
+                                <div class="col-md-12">
+                                  <textarea name="observaciones" rows="8" cols="40" class="form-control" readonly></textarea>
+                                </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
 

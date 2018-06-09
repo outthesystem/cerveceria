@@ -24,6 +24,12 @@
                             </select>
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <label class="col-12" for="name">Observaciones</label>
+                        <div class="col-md-12">
+                          <textarea name="observaciones" rows="8" cols="40" class="form-control"></textarea>
+                        </div>
+                    </div>
                   </div>
               </div>
               <div class="modal-footer">
