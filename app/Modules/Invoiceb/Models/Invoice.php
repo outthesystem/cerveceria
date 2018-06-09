@@ -11,6 +11,9 @@ class Invoice extends Model
       'name',
       'phone',
       'total',
+      'date_reservation',
+      'hour_reservation',
+      'reserved',
       'time_total',
       'paid',
       'date_paid'
@@ -19,6 +22,11 @@ class Invoice extends Model
     public function client()
     {
       return $this->hasOne('App\Modules\Client\Models\Client', 'id', 'client_id');
+    }
+
+    public function scopeInvoicer($query)
+    {
+      return $this->where('reserved', '=', NULL);
     }
 
     public function items()

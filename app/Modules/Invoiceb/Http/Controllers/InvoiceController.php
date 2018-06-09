@@ -21,14 +21,19 @@ class InvoiceController extends Controller
 
       if (isset($search)) {
         $invoices = Invoice::where('name', 'like', '%' . $search . '%')
+        ->Invoicer()
         ->orderBy('created_at', 'desc')
         ->paginate(15);
         }
         else {
-        $invoices = Invoice::orderBy('created_at', 'desc')->paginate(15);
+        $invoices = Invoice::orderBy('created_at', 'desc')
+        ->Invoicer()
+        ->paginate(15);
         }
 
-      return view('invoiceb::index', compact('invoices', 'search'));
+        $reservations = Invoice::where('reserved', '=', 1)->orderBy('date_reservation', 'desc')->get();
+
+      return view('invoiceb::index', compact('invoices', 'search', 'reservations'));
     }
 
     public function create_step1(Request $request)
@@ -38,6 +43,13 @@ class InvoiceController extends Controller
       return view('invoiceb::step1', compact('clients'));
     }
 
+    public function create_reservation(Request $request)
+    {
+      $clients = Client::all();
+
+      return view('invoiceb::step_reservation', compact('clients'));
+    }
+
     public function step1_store(Client $client, Request $request)
     {
       $client = Client::find($request->client_id);
@@ -45,10 +57,13 @@ class InvoiceController extends Controller
       $invoice = Invoice::create([
         'client_id' => $client->id,
         'name' => $client->name,
-        'phone' => $client->phone
+        'phone' => $client->phone,
+        'date_reservation' => $request->date_reservation,
+        'hour_reservation' => $request->hour_reservation,
+        'reserved' => $request->reserved,
       ]);
 
-      Session::flash('success', 'La factura se creo correctamente.');
+      Session::flash('success', 'La factura/reserva se creo correctamente.');
 
       return redirect('invoiceb/edit/'.$invoice->id);
     }
@@ -213,6 +228,7 @@ class InvoiceController extends Controller
     public function paidInvoice(Invoice $invoice, Request $request)
     {
       $invoice->paid = 1;
+      $invoice->reserved = NULL;
       $invoice->date_paid = date('Y-m-d', strtotime(Carbon::now()));
       $invoice->update();
 
@@ -224,6 +240,7 @@ class InvoiceController extends Controller
     public function cancelInvoice(Invoice $invoice, Request $request)
     {
       $invoice->paid = 0;
+      $invoice->reserved = NULL;
       $invoice->date_paid = NULL;
       $invoice->update();
 

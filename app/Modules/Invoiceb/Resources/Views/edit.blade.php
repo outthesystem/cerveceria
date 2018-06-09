@@ -69,6 +69,10 @@
                                         @if ($p->is_cut == 1)
                                            Tiempo: {{$p->time}} minutos
                                         @endif
+                                        <br>
+                                        <b>
+                                          ${{ number_format($p->price, 2) }}
+                                        </b>
                                       </p>
                                   </div>
                               </a>

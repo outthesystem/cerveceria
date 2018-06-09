@@ -18,6 +18,7 @@ Route::group(['prefix' => 'invoiceb'], function () {
 
   Route::group(['middleware' => ['auth', 'permission:crear_facturas']], function () {
     Route::get('/create_step1', 'InvoiceController@create_step1');
+    Route::get('/create_reservation', 'InvoiceController@create_reservation');
     Route::post('/step1_store', 'InvoiceController@step1_store');
   });
 
