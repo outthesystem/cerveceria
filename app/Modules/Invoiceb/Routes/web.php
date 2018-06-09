@@ -28,5 +28,6 @@ Route::group(['prefix' => 'invoiceb'], function () {
     Route::post('/updateclient/{invoice}', 'InvoiceController@updateClient');
     Route::post('/storeitem/{invoice}', 'InvoiceController@storeItem');
     Route::post('/deleteitem/{invoiceitem}', 'InvoiceController@deleteItem');
+    Route::post('/updatestock/{product}', 'InvoiceController@updateStock');
   });
 });

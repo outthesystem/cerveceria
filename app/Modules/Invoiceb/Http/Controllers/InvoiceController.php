@@ -167,6 +167,24 @@ class InvoiceController extends Controller
       return redirect('invoiceb/edit/'.$invoice->id);
     }
 
+    public function updateStock(Product $product, Request $request)
+    {
+      $regstock = Regstock::create([
+        'product_id' => $product->id,
+        'stock_old' => $product->stock,
+        'stock_modify' => $request->stock,
+        'stock_new' => $request->stock,
+        'reason' => $request->reason
+      ]);
+
+        $product->stock = $request->stock;
+        $product->update();
+
+        Session::flash('success', 'Se actualizo el stock correctamente.');
+
+        return redirect('product/edit/'.$product->id);
+    }
+
     public function paidInvoice(Invoice $invoice, Request $request)
     {
       $invoice->paid = 1;

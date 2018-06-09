@@ -153,12 +153,18 @@
                                         <td>{{$i->quantity}}</td>
                                         <td>${{ number_format($i->total, 2) }}</td>
                                         <td class="text-center">
-                                          <div class="btn-group">
-                                              <a class="btn btn-sm btn-secondary"
-                                                data-toggle="modal" data-target="#deleteItem{{$i->id}}">
-                                                <i class="fa fa-times"></i>
-                                              </a>
-                                          </div>
+                                          @if ($invoice->paid == 1)
+                                            Esta factura esta abonada, debes
+                                            <a href="{{url('invoiceb/cancelinvoice/'.$invoice->id)}}">editar la factura</a>
+                                             para eliminar lineas.
+                                            @else
+                                              <div class="btn-group">
+                                                  <a class="btn btn-sm btn-secondary"
+                                                    data-toggle="modal" data-target="#deleteItem{{$i->id}}">
+                                                    <i class="fa fa-times"></i>
+                                                  </a>
+                                              </div>
+                                          @endif
                                         </td>
                                       </tr>
                                     @empty

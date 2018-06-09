@@ -54,11 +54,39 @@
                             @endforelse
                           </tbody>
                       </table>
+                      @if ($product->is_cut != 1)
+                        <form action="{{url('/invoiceb/updatestock/'.$product->id)}}" method="POST">
+                          {{csrf_field()}}
+                          <div class="form-group row">
+                              <div class="col-sm-4">
+                                <div class="form-group row">
+                                    <label class="col-12" for="name">Stock actualizado</label>
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control" id="stock" name="stock">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-4" for="name">Motivo</label>
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control" id="reason" name="reason" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-12">
+                                      <button type="submit" class="btn btn-primary">Actualizar</button>
+                                    </div>
+                                </div>
+                              </div>
+                          </div>
+                        </form>
+                      @endif
                     </div>
+
                     <div class="block-content block-content-full block-content-sm bg-body-light font-size-sm">
                                   <center>
                                   {!! $regstocks->links() !!}</center>
                               </div>
+
                 </div>
               </div>
               <div class="col-sm-12 col-md-6 col-lg-6 col-lg-6 ">
