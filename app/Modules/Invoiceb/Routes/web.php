@@ -30,4 +30,8 @@ Route::group(['prefix' => 'invoiceb'], function () {
     Route::post('/deleteitem/{invoiceitem}', 'InvoiceController@deleteItem');
     Route::post('/updatestock/{product}', 'InvoiceController@updateStock');
   });
+
+  Route::group(['middleware' => ['auth', 'permission:eliminar_facturas']], function () {
+    Route::get('/delete/{invoice}', 'InvoiceController@delete');
+  });
 });

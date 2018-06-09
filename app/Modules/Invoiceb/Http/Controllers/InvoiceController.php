@@ -79,6 +79,31 @@ class InvoiceController extends Controller
       return redirect('invoiceb/edit/'.$invoice->id);
     }
 
+    public function delete(Invoice $invoice)
+    {
+      foreach ($invoice->items as $i) {
+        $product = Product::find($i->product_id);
+        $regstock = Regstock::create([
+          'product_id' => $product->id,
+          'stock_old' => $product->stock,
+          'stock_modify' => $i->quantity,
+          'stock_new' => $product->stock - $i->quantity,
+          'sum' => 2,
+          'reason' => 'Modificacion por eliminacion.'
+        ]);
+        $product->stock = $product->stock + $i->quantity;
+        $product->update();
+        $i->delete();
+      }
+
+      Session::flash('success', 'Se elimino la factura correctamente.');
+
+      $invoice->delete();
+
+      return redirect('invoiceb/index');
+
+    }
+
     public function storeItem(Invoice $invoice, Request $request)
     {
       $product = Product::find($request->product_id);

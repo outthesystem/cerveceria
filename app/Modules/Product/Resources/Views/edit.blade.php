@@ -35,10 +35,14 @@
                           <tbody>
                             @forelse ($regstocks as $r)
                               <tr
+                              @if ($r->sum == 2)
+                                class="table-primary" data-toggle="tooltip" data-placement="bottom" data-original-title="Eliminacion de factura"
+                              @endif
                               @if ($r->sum == 1)
                                 class="table-success" data-toggle="tooltip" data-placement="bottom" data-original-title="Agregado"
-                                @else
-                                class="table-danger" data-toggle="tooltip" data-placement="bottom" data-original-title="Descontado"
+                              @endif
+                              @if ($r->sum == NULL)
+                              class="table-danger" data-toggle="tooltip" data-placement="bottom" data-original-title="Descontado"
                               @endif
                               >
                                 <td>{{$r->id}}</td>
