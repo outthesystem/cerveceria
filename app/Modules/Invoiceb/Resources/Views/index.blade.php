@@ -44,6 +44,7 @@
                               <th>Nombre del cliente</th>
                               <th>Total</th>
                               <th>Tiempo total de demora</th>
+                              <th>Observaciones</th>
                               <th class="text-center">Acciones</th>
                             </thead>
                             <tbody>
@@ -62,6 +63,7 @@
                                   <td>
                                     <b>{{$i->time_total}} minutos.</b>
                                   </td>
+                                  <td>{{$i->observaciones}}</td>
                                   <td class="text-center">
                                     <div class="btn-group">
                                         <a href="{{url('/invoiceb/edit/'.$i->id)}}" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Editar">
@@ -88,9 +90,9 @@
                   </div>
                 </div>
                 <div class="col-sm-12 col-md-12 col-xl-12">
-                  <div class="block">
-                      <div class="block-header block-header-default">
-                          <h3 class="block-title">Reservaciones <small>{{$invoices->count()}}</small></h3>
+                  <div class="block block-themed block-rounded">
+                      <div class="block-header block-header-default bg-pulse">
+                          <h3 class="block-title">Reservaciones <small>{{$reservations->count()}}</small></h3>
                       </div>
                       <div class="block-content">
                         <form action="{{url('/invoice/index')}}" method="GET">
@@ -113,6 +115,7 @@
                               <th>Nombre del cliente</th>
                               <th>Total</th>
                               <th>Fecha de reserva</th>
+                              <th>Observaciones</th>
                               <th class="text-center">Acciones</th>
                             </thead>
                             <tbody>
@@ -125,6 +128,7 @@
                                   <td>
                                     <b>{{$r->date_reservation}} | {{$r->hour_reservation}}</b>
                                   </td>
+                                  <td>{{$i->observaciones}}</td>
                                   <td class="text-center">
                                     <div class="btn-group">
                                         <a href="{{url('/invoiceb/edit/'.$r->id)}}" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Editar">

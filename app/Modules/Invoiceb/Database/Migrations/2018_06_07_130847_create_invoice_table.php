@@ -19,7 +19,7 @@ class CreateInvoiceTable extends Migration
             $table->string('name');
             $table->string('phone')->nullable();
             $table->double('total')->nullable();
-            $table->time('time_total')->nullable();
+            $table->integer('time_total')->nullable();
             $table->boolean('paid')->nullable();
             $table->date('date_paid')->nullable();
             $table->timestamps();

@@ -178,9 +178,9 @@
                                     @endforelse
                                   </tbody>
                               </table>
-
-
                             </div>
+                            <h2>Total: ${{ number_format($invoice->total, 2) }}</h2>
+
                         </a>
                         <div class="row">
                           <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
@@ -218,6 +218,7 @@
                           @endif
                         </div>
                       </div>
+
                   </div>
                 </div>
               </div>
