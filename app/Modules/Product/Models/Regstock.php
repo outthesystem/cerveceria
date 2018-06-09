@@ -12,7 +12,8 @@ class Regstock extends Model
       'stock_old',
       'stock_modify',
       'stock_new',
-      'reason'
+      'reason',
+      'sum'
     ];
 
 }
